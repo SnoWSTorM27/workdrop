@@ -10,7 +10,7 @@ import cssHeader from "./Header.module.css";
 import NavAdaptive from "../NavAdaptive/NavAdaptive";
 
 
-function Header() {
+function Header(props) {
     window.onscroll = function(){scrollFunction()};
     
     function scrollFunction() {
@@ -24,7 +24,7 @@ function Header() {
         }
     }
 
-    const[show,setShow] = useState(false);
+    const[showNav,setShowNav] = useState(false);
 
     return (
         
@@ -40,9 +40,9 @@ function Header() {
                 <Link className={cssHeader.navLink}  to="/fq">Частые вопросы</Link>   
                 
             </nav>
-            <Btn to="/auth" buttonName = "Войти" />
-            <img onTouchStart={() => setShow(true)} className={cssHeader.mobileMenu} src={mobileMenu} alt="mobile menu" />
-            <NavAdaptive trigger={!show} setTrigger={setShow} /> 
+            <Btn to="/auth" buttonName = "Войти" className={cssHeader.btn} />
+            <img onClick={() => setShowNav(true)} className={cssHeader.mobileMenu} src={mobileMenu} alt="mobile menu" />
+            <NavAdaptive flag={showNav} setFlag={setShowNav} /> 
         </header>
         
     )
